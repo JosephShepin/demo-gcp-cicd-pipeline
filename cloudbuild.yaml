@@ -1,13 +1,13 @@
 steps:
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/myapp-308223/myapp', '.']
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/myapp', '.']
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/myapp-308223/myapp']
+  args: ['push', 'gcr.io/$PROJECT_ID/myapp']
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'myapp', '--image', 'gcr.io/myapp-308223/myapp', '--region', 'us-central1', '--platform', 'managed','--port','80']
+  args: ['run', 'deploy', 'myapp', '--image', 'gcr.io/$PROJECT_ID/myapp', '--region', 'us-central1', '--platform', 'managed','--port','80']
 images:
-- gcr.io/myapp-308223/myapp
+- gcr.io/$PROJECT_ID/myapp
