@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM python:3.8
 
 ENV PORT 80
 ENV HOST 0.0.0.0
@@ -12,10 +12,9 @@ COPY ./requirements.txt /app/requirements.txt
 
 WORKDIR /app
 
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 
 COPY . /app
 
-ENTRYPOINT [ "python3" ]
 
-CMD [ "app.py" ]
+ENTRYPOINT ["python", "app.py"]
